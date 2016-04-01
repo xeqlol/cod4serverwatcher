@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cod4serverwatcher.INI
+namespace cod4serverwatcher.Ini
 {
     public static class IniValues
     {
@@ -108,8 +108,10 @@ namespace cod4serverwatcher.INI
         private static Boolean AreKeysCorrect()
         {
             IniFile iniFile = new IniFile(Constants.IniPath);
-            int x;                          // Used to test integer keys in the INI file
-            Boolean allKeysCorrect = true;  // Indicates if at least a key is incorrect
+            // Used to test integer keys in the INI file.
+            int x;
+            // Indicates if at least a key is incorrect.
+            Boolean allKeysCorrect = true;
 
             // Check if each field is not empty
             if (iniFile.ReadKey("CallofDuty", "CoDMPExePath") == "")
@@ -135,11 +137,11 @@ namespace cod4serverwatcher.INI
 
             if (!allKeysCorrect)
             {
-                // No need to check for values format if they are possibly not filled, return now
+                // No need to check for values format if they are possibly not filled, return now.
                 return false;
             }
 
-            // Check formats
+            // Check formats.
             if (!int.TryParse(iniFile.ReadKey("Server", "Port"), out x))
             {
                 allKeysCorrect = false;

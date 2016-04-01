@@ -2,7 +2,7 @@
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace cod4serverwatcher.INI
+namespace cod4serverwatcher.Ini
 {
     public class IniFile
     {

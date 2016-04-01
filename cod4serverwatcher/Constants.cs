@@ -27,22 +27,21 @@ namespace cod4serverwatcher
         /// <summary>
         /// The default path to the CoD MP exe file.
         /// </summary>
-        public static readonly String DefaultCoDMPExePath =
-            @"C:\Program Files\Activision\Call of Duty 4 - Modern Warfare\iw3mp.exe";
+        public static readonly String DefaultCoDMPExePath = @"E:\Games\Call of Duty 4 - Modern Warfare\iw3mp.exe";
 
         /// <summary>
         /// The interval (in milliseconds) of the timer used to refresh the status of the server.
         /// </summary>
-        public static readonly int RefreshTimerInterval = 3000;
+        public static readonly int RefreshTimerInterval = 5000;
 
         /// <summary>
-        /// The default server host.
+        /// The default server host (=[JFF]= Cracked Server #3 Hardcore).
         /// </summary>
-        public static readonly String DefaultServerHost = "tact.greenlabeltactical.com";
+        public static readonly String DefaultServerHost = "176.9.54.140";
 
         /// <summary>
         /// The default server port.
         /// </summary>
-        public static readonly int DefaultServerPort = 28960;
+        public static readonly int DefaultServerPort = 28906;
     }
 }

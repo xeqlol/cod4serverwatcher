@@ -50,12 +50,6 @@
     <Compile Include="INI\IniUtils.cs" />
     <Compile Include="INI\IniValues.cs" />
     <Compile Include="Utilities\ContextMenus.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="INI\IniFile.cs" />
     <Compile Include="Utilities\ProcessIcon.cs" />
     <Compile Include="Program.cs" />
