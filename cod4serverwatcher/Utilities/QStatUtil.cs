@@ -11,7 +11,7 @@ namespace cod4serverwatcher.Utilities
         {
             ProcessStartInfo psi = new ProcessStartInfo();
             psi.FileName = IniValues.QStatExePath;
-            psi.Arguments = "-cods " + host + ":" + port + " -P -R -xml";
+            psi.Arguments = "-cod4s " + host + ":" + port + " -P -R -xml";
             psi.CreateNoWindow = true;
             psi.UseShellExecute = false;
             psi.RedirectStandardOutput = true;

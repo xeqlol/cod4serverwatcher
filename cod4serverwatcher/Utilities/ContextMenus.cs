@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace cod4serverwatcher
 {
@@ -25,13 +27,29 @@ namespace cod4serverwatcher
             ToolStripMenuItem item;
             ToolStripSeparator sep;
 
-            // Windows Explorer.
+            // Start game.
             item = new ToolStripMenuItem();
-            item.Text = "Explorer";
-            item.Click += new EventHandler(Explorer_Click);
+            item.Text = "Start Call of Duty 4";
+            item.Click += new EventHandler(Start_Click);
             menu.Items.Add(item);
 
-            // About.
+            // Separator.
+            sep = new ToolStripSeparator();
+            menu.Items.Add(sep);
+
+            // Show settings in notepad.
+            item = new ToolStripMenuItem();
+            item.Text = "Settings";
+            item.Click += new EventHandler(Settings_Click);
+            menu.Items.Add(item);
+
+            // Restart.
+            item = new ToolStripMenuItem();
+            item.Text = "Restart";
+            item.Click += new EventHandler(Restart_Click);
+            menu.Items.Add(item);
+
+            // Show about in notepad.
             item = new ToolStripMenuItem();
             item.Text = "About";
             item.Click += new EventHandler(About_Click);
@@ -49,37 +67,42 @@ namespace cod4serverwatcher
 
             return menu;
         }
-
-        /// <summary>
-        /// Handles the Click event of the Explorer control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        void Explorer_Click(object sender, EventArgs e)
+        void Start_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer", null);
-        }
-
-        /// <summary>
-        /// Handles the Click event of the About control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        void About_Click(object sender, EventArgs e)
-        {
-            if (!isAboutLoaded)
+            if (Program.Server.FreeSlot)
             {
-                isAboutLoaded = true;
-                //new AboutBox().ShowDialog();
-                isAboutLoaded = false;
+                if (!Program.Server.Connect())
+                {
+                    Program.NIcon.BalloonTipIcon = ToolTipIcon.Error;
+                    Program.NIcon.BalloonTipTitle = "Error!";
+                    Program.NIcon.Text = "An error occured. Make sure the path to the Call of Duty exe " +
+                                            "file registered in the configuration file (" + Path.GetFullPath(Constants.IniPath) + ") is correct. Could not start Call of Duty";
+                    Program.NIcon.ShowBalloonTip(30000);
+                }
+            }
+            else
+            {
+                Program.NIcon.BalloonTipIcon = ToolTipIcon.Error;
+                Program.NIcon.BalloonTipTitle = "Error!";
+                Program.NIcon.Text = "No free slots!";
+                Program.NIcon.ShowBalloonTip(30000);
             }
         }
 
-        /// <summary>
-        /// Processes a menu item.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        void Settings_Click(object sender, EventArgs e)
+        {
+            Process.Start("notepad.exe", "settings.ini");
+        }
+
+        void Restart_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Application.ExecutablePath);
+            Application.Exit();
+        }
+        void About_Click(object sender, EventArgs e)
+        {
+            Process.Start("notepad.exe", "about.txt");
+        }
         void Exit_Click(object sender, EventArgs e)
         {
             // Quit without further ado.

@@ -316,6 +316,26 @@ namespace cod4serverwatcher.CoD4_Objects
             this.map = null;
             this.ping = 0;
         }
+
+        /// <summary>
+        /// Cut rest symbols.
+        /// </summary>
+        public static String TrimLongServerName(String name)
+        {
+            int maxChars = 39; // 64 - " - Winter Crash (xxx/xxx)".Length = 64-25 = 39.
+            // 64 is max length of notifyIcon.Text property.
+            // "Winter Crash" is the longest name possible for the map.
+
+            if (name.Length > maxChars)
+            {
+                return name.Remove(maxChars - 1 - 3) + "..."; // -1 to get index, -3 cause we're adding "...".
+
+            }
+            else
+            {
+                return name;
+            }
+        }
         #endregion
     }
 
