@@ -6,4 +6,4 @@
 /cod4serverwatcher/bin
 /cod4serverwatcher/obj
 /.vs
-.config
+App.config
