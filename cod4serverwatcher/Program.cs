@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
@@ -13,9 +14,7 @@ namespace cod4serverwatcher
     {
         public static NotifyIcon NIcon;
         public static Server Server;
-
         public static Form Invoker;
-
         private static System.Timers.Timer RefreshTimer;
 
         /// <summary>
@@ -43,14 +42,14 @@ namespace cod4serverwatcher
                 RefreshTimer.Start();
 
                 // Hint for invokes. ;_;
-                Invoker = new InvokerForm();
+                Invoker = new Form();
                 var hWnd = Invoker.Handle;
 
                 NIcon.Visible = true;
                 NIcon.MouseClick += new MouseEventHandler(NI_MouseClick);
                 NIcon.MouseDoubleClick += new MouseEventHandler(NI_MouseDoubleClick);
                 // Standart icon from Call of Duty 4 folder.
-                NIcon.Icon = Invoker.Icon;
+                NIcon.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location); ;
                 NIcon.Text = "Call of Duty 4 Server Watcher";
                 NIcon.Visible = true;
                 NIcon.ContextMenuStrip = new ContextMenus().Create();
