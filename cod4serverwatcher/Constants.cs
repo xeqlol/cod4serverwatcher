@@ -39,5 +39,10 @@ namespace cod4serverwatcher
         /// The default server port.
         /// </summary>
         public static readonly int DefaultServerPort = 28906;
+
+        /// <summary>
+        /// The default autorun property.
+        /// </summary>
+        public static readonly bool DefaultAutorun = true;
     }
 }

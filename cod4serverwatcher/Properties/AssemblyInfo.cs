@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
 [assembly: AssemblyTitle("cod4serverwatcher")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Call of Duty 4 Server Watcher")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Dmitrii Nemkov")]
 [assembly: AssemblyProduct("cod4serverwatcher")]
 [assembly: AssemblyCopyright("Copyright © Dmitrii Nemkov 2016")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("Dmitrii Nemkov")]
 [assembly: AssemblyCulture("")]
 
 // Параметр ComVisible со значением FALSE делает типы в сборке невидимыми 

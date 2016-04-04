@@ -7,6 +7,7 @@ using System.Timers;
 using System.Windows.Forms;
 using cod4serverwatcher.CoD4_Objects;
 using cod4serverwatcher.Ini;
+using Microsoft.Win32;
 
 namespace cod4serverwatcher
 {
@@ -28,6 +29,17 @@ namespace cod4serverwatcher
             // Load settings from ini file.
             IniUtils.CreateKeys();
             IniValues.LoadFromFile();
+
+            // Check for autorun.
+            RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            if (IniValues.Autorun)
+            {
+                rkApp.SetValue("CoD4ServerWatcher", Application.ExecutablePath);
+            }
+            else
+            {
+                rkApp.DeleteValue("CoD4ServerWatcher");
+            }
 
             // Initialize watched server.
             Server = new Server(IniValues.Host, IniValues.Port);

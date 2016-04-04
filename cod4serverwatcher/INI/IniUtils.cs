@@ -42,6 +42,12 @@ namespace cod4serverwatcher.Ini
             {
                 iniFile.WriteKey("Server", "Port", Constants.DefaultServerPort.ToString());
             }
+
+            // Application
+            if (String.IsNullOrEmpty(iniFile.ReadKey("Application", "Autorun")))
+            {
+                iniFile.WriteKey("Application", "Autorun", Constants.DefaultAutorun.ToString());
+            }
         }
     }
 }
