@@ -30,17 +30,6 @@ namespace cod4serverwatcher
             IniUtils.CreateKeys();
             IniValues.LoadFromFile();
 
-            // Check for autorun.
-            RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            if (IniValues.Autorun)
-            {
-                rkApp.SetValue("CoD4ServerWatcher", Application.ExecutablePath);
-            }
-            else
-            {
-                rkApp.DeleteValue("CoD4ServerWatcher");
-            }
-
             // Initialize watched server.
             Server = new Server(IniValues.Host, IniValues.Port);
             // Same with tray icon.
@@ -180,12 +169,23 @@ namespace cod4serverwatcher
 
         static void NI_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (!Program.Server.Connect())
+            if (Program.Server.FreeSlot)
             {
-                MessageBox.Show("An error occured. Make sure the path to the Call of Duty exe " +
-                    "file registered in the configuration file (" +
-                    Path.GetFullPath(Constants.IniPath) + ") is correct.",
-                    "Could not start Call of Duty", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (!Program.Server.Connect())
+                {
+                    Program.NIcon.BalloonTipIcon = ToolTipIcon.Error;
+                    Program.NIcon.BalloonTipTitle = "Error!";
+                    Program.NIcon.BalloonTipText = "An error occured. Make sure the path to the Call of Duty exe " +
+                                            "file registered in the configuration file (" + Path.GetFullPath(Constants.IniPath) + ") is correct. Could not start Call of Duty";
+                    Program.NIcon.ShowBalloonTip(30000);
+                }
+            }
+            else
+            {
+                Program.NIcon.BalloonTipIcon = ToolTipIcon.Error;
+                Program.NIcon.BalloonTipTitle = Program.Server.Name;
+                Program.NIcon.BalloonTipText = string.Format("No free slots ({0}/{1})", Program.Server.PlayersCount, (Program.Server.MaxPlayers - Program.Server.PrivateClients));
+                Program.NIcon.ShowBalloonTip(30000);
             }
         }
     }

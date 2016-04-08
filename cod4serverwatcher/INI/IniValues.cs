@@ -21,7 +21,6 @@ namespace cod4serverwatcher.Ini
         private static String host;
         private static int port;
 
-        private static bool autorun;
         #endregion Fields
 
         #region Properties
@@ -84,17 +83,6 @@ namespace cod4serverwatcher.Ini
             get { return port; }
             set { port = value; }
         }
-        /// <summary>
-        /// Gets or sets the autorun property.
-        /// </summary>
-        /// <value>
-        /// Autorun flag.
-        /// </value>
-        public static bool Autorun
-        {
-            get { return autorun; }
-            set { autorun = value; }
-        }
         #endregion Properties
 
         #region Methods
@@ -111,7 +99,6 @@ namespace cod4serverwatcher.Ini
             qStatExePath = iniFile.ReadKey("QStat", "QStatExePath");
             host = iniFile.ReadKey("Server", "Host");
             port = int.Parse(iniFile.ReadKey("Server", "Port"));
-            autorun = bool.Parse(iniFile.ReadKey("Application", "Autorun"));
         }
 
         /// <summary>

@@ -12,11 +12,6 @@ namespace cod4serverwatcher
     class ContextMenus
     {
         /// <summary>
-        /// Is the About box displayed?
-        /// </summary>
-        bool isAboutLoaded = false;
-
-        /// <summary>
         /// Creates this instance.
         /// </summary>
         /// <returns>ContextMenuStrip</returns>
@@ -75,7 +70,7 @@ namespace cod4serverwatcher
                 {
                     Program.NIcon.BalloonTipIcon = ToolTipIcon.Error;
                     Program.NIcon.BalloonTipTitle = "Error!";
-                    Program.NIcon.Text = "An error occured. Make sure the path to the Call of Duty exe " +
+                    Program.NIcon.BalloonTipText = "An error occured. Make sure the path to the Call of Duty exe " +
                                             "file registered in the configuration file (" + Path.GetFullPath(Constants.IniPath) + ") is correct. Could not start Call of Duty";
                     Program.NIcon.ShowBalloonTip(30000);
                 }
@@ -83,8 +78,8 @@ namespace cod4serverwatcher
             else
             {
                 Program.NIcon.BalloonTipIcon = ToolTipIcon.Error;
-                Program.NIcon.BalloonTipTitle = "Error!";
-                Program.NIcon.Text = "No free slots!";
+                Program.NIcon.BalloonTipTitle = Program.Server.Name;
+                Program.NIcon.BalloonTipText = string.Format("No free slots ({0}/{1})", Program.Server.PlayersCount, (Program.Server.MaxPlayers - Program.Server.PrivateClients));
                 Program.NIcon.ShowBalloonTip(30000);
             }
         }
