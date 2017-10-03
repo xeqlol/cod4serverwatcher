@@ -96,7 +96,7 @@ namespace cod4serverwatcher
                         NIcon.BalloonTipTitle = "Error!";
                         NIcon.BalloonTipText = "Port must be > 0!";
                         NIcon.BalloonTipIcon = ToolTipIcon.Error;
-                        NIcon.ShowBalloonTip(30000);
+                        NIcon.ShowBalloonTip(10000);
                         NIcon.Text = "Port must be > 0!";
                     });
                 }
@@ -177,7 +177,7 @@ namespace cod4serverwatcher
                     Program.NIcon.BalloonTipTitle = "Error!";
                     Program.NIcon.BalloonTipText = "An error occured. Make sure the path to the Call of Duty exe " +
                                             "file registered in the configuration file (" + Path.GetFullPath(Constants.IniPath) + ") is correct. Could not start Call of Duty";
-                    Program.NIcon.ShowBalloonTip(30000);
+                    Program.NIcon.ShowBalloonTip(10000);
                 }
             }
             else
@@ -185,7 +185,7 @@ namespace cod4serverwatcher
                 Program.NIcon.BalloonTipIcon = ToolTipIcon.Error;
                 Program.NIcon.BalloonTipTitle = Program.Server.Name;
                 Program.NIcon.BalloonTipText = string.Format("No free slots ({0}/{1})", Program.Server.PlayersCount, (Program.Server.MaxPlayers - Program.Server.PrivateClients));
-                Program.NIcon.ShowBalloonTip(30000);
+                Program.NIcon.ShowBalloonTip(10000);
             }
         }
     }
